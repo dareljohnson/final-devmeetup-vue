@@ -54,14 +54,21 @@
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat><v-icon left>supervisor_account</v-icon>View Meetups</v-btn>
+        <v-btn 
+          flat 
+          value="true"
+          v-for="(item, i) in menuItems"
+          :key="i">
+          <v-icon left>{{ item.icon }}</v-icon>
+          {{ item.title }}
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
       <router-view/>
     </v-content>
     <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
+      <span>&copy; 2018</span>
     </v-footer>
   </v-app>
 </template>
