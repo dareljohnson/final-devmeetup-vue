@@ -81,8 +81,8 @@ export default {
       sideNav: false,
       fixed: false,
       menuItems: [
-            { icon: 'supervisor_account', title: 'View Content', link: '/viewcontent'},
-            { icon: 'room', title: 'Create Content', link: '/createcontent'},
+            { icon: 'supervisor_account', title: 'View Meetups', link: '/viewcontent'},
+            { icon: 'room', title: 'Organize Meetup', link: '/createcontent'},
             { icon: 'person', title: 'Profile', link: '/profile'},
             { icon: 'face', title: 'Sign up', link: '/signup'},
             { icon: 'lock_open', title: 'Sign in', link: '/signin'}
