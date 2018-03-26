@@ -16,7 +16,7 @@
           </v-list-tile-avatar>
           <v-list-tile-content @click.stop="sideNav = !sideNav">
             <!-- <v-list-tile-title>Darel Johnson</v-list-tile-title> -->
-            <router-link to="/profile" tag="span" style="cursor: pointer">{{ currentUser }}</router-link>
+            <router-link to="/" tag="span" style="cursor: pointer">{{ currentUser }}</router-link>
           </v-list-tile-content>
         </v-list-tile>
         </v-list> 
