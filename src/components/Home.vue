@@ -10,15 +10,21 @@
       </v-layout>
       <v-layout row wrap class="mt-2">
           <v-flex xs12>
-              <v-carousel>
+              <v-carousel style="cursor: pointer;" v-cloak>
                     <v-carousel-item
                         v-for="meetup in meetups"
                         :key="meetup.id"
                         :src="meetup.imageURL"
-                    >
-                    <div class="title text-xs-center">
-                        {{ meetup.title }}
-                    </div>
+                        router
+                        :to="{
+                            name:'Meetup', 
+                            params:{
+                                id: meetup.id}
+                                }"
+                        >
+                        <div class="title text-xs-center">
+                            {{ meetup.title }}
+                        </div>
                     </v-carousel-item>
               </v-carousel>
           </v-flex>
@@ -36,9 +42,13 @@ export default {
       data () {
         return {
             meetups: [
-                // Make to copy the correct image url
-                { imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/New_york_times_square-terabass.jpg/800px-New_york_times_square-terabass.jpg', id: 'aekhiO2jdBHSis', title: 'Meetup in New York'},
-                { imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Paris_vue_d%27ensemble_tour_Eiffel.jpg/800px-Paris_vue_d%27ensemble_tour_Eiffel.jpg', id: 'aekhirreww556e', title: 'Meetup in Paris'}
+                // Make sure to copy the correct image url
+                { imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/New_york_times_square-terabass.jpg/800px-New_york_times_square-terabass.jpg', 
+                id: 'aekhiO2jdBHSis', 
+                title: 'Meetup in New York'},
+                { imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Paris_vue_d%27ensemble_tour_Eiffel.jpg/800px-Paris_vue_d%27ensemble_tour_Eiffel.jpg', 
+                id: 'aekhirreww556e', 
+                title: 'Meetup in Paris'}
             ]
         }
       },
@@ -55,5 +65,10 @@ export default {
     color:white;
     font-size: 2em;
     padding: 20px;
+}
+
+
+[v-cloak] { 
+  display: none; 
 }
 </style>
