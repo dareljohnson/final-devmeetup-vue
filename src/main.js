@@ -15,7 +15,9 @@ import {
   transitions,
   VCarousel,
   VCard,
-  VTextField
+  VTextField,
+  VDatePicker,
+  VTimePicker
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
 
@@ -32,7 +34,9 @@ Vue.use(Vuetify, {
     transitions,
     VCarousel,
     VCard,
-    VTextField
+    VTextField,
+    VDatePicker,
+    VTimePicker
   },
   theme: {
     primary: '#f44336',
