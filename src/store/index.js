@@ -12,13 +12,13 @@ export const store = new Vuex.Store({
             title: 'Meetup in New York', 
             location: 'New York',
             description: 'An awesome meetup!',
-            date: '2017-07-17'},
+            date: new Date()},
             { imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Paris_vue_d%27ensemble_tour_Eiffel.jpg/800px-Paris_vue_d%27ensemble_tour_Eiffel.jpg', 
             id: 'aekhirreww556e', 
             title: 'Meetup in Paris', 
             location: 'Paris, France',
             description: 'It\'s Paris!',
-            date: '2017-07-20'}
+            date: new Date()}
         ],
         // users
         user:{
