@@ -5,7 +5,7 @@
         <v-card>
           <v-card-text>
             <v-container>
-              <form>
+              <form @submit.prevent="onSignup">
                 <v-layout row>
                   <v-flex xs12>
                     <v-text-field
@@ -27,6 +27,7 @@
                       id="password"
                       v-model="password"
                       type="password"
+                      :rules = "[checkPasswordLength]"
                       required
                     >
                     </v-text-field>
@@ -72,12 +73,26 @@
     computed:{
       comparePasswords () {
         return this.password !== this.confirmPassword ? 'Passwords do not match!': ''
+      },
+      checkPasswordLength (){
+        return this.confirmPassword.length <= 6 ? 'Password must have more than 6 characters': ''
+      },
+      user (){
+        return this.$store.getters.user
+      }
+    },
+    watch:{
+      user (value){
+        if(value !== null && value !== undefined){
+          this.$router.push('/')
+        }
       }
     },
     methods: {
       onSignup (){
         //Vuex
-        console.log({email: this.email, password: this.password, confirmPassword: this.confirmPassword})
+        this.$store.dispatch('signUserUp',{email: this.email, password: this.password})
+        //console.log({email: this.email, password: this.password, confirmPassword: this.confirmPassword})
       }
     }
   }
