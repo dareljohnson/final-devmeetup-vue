@@ -58,7 +58,7 @@ Vue.use(Vuetify, {
 
 Vue.config.productionTip = false
 
-// register compoenents
+// register helpers & components
 Vue.filter('date', DateFilter)
 Vue.component('app-alert', AlertComponent)
 
@@ -75,6 +75,12 @@ new Vue({
       databaseURL: "https://devmeetup-c685d.firebaseio.com",
       projectId: "devmeetup-c685d",
       storageBucket: "devmeetup-c685d.appspot.com"
+    })
+    // Listner: Authentication and token detection
+    firebase.auth().onAuthStateChanged((user)=>{
+      if(user){
+        this.$store.dispatch('autoSignIn', user)
+      }
     })
     // preload Meetups
     this.$store.dispatch('loadMeetups')
