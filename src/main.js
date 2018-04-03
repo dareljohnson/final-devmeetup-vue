@@ -74,7 +74,7 @@ new Vue({
       authDomain: "devmeetup-c685d.firebaseapp.com",
       databaseURL: "https://devmeetup-c685d.firebaseio.com",
       projectId: "devmeetup-c685d",
-      storageBucket: "devmeetup-c685d.appspot.com"
+      storageBucket: "gs://devmeetup-c685d.appspot.com"
     })
     // Listner: Authentication and token detection
     firebase.auth().onAuthStateChanged((user)=>{
