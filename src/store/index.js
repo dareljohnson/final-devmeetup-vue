@@ -35,6 +35,9 @@ export const store = new Vuex.Store({
         createMeetup (state, payload) {
             state.loadedMeetups.push(payload)
         },
+        setLoadedMeetups (state, payload){
+            state.loadedMeetups = payload
+        },
         setUser (state, payload){
             state.user  = payload
         },
@@ -48,7 +51,32 @@ export const store = new Vuex.Store({
             state.error = null
         }
     },
+    // ASYNC code here
     actions:{
+        // load meetups
+        loadMeetups ({commit}) {
+            commit('setLoading', true)
+            firebase.database().ref('meetups').once('value')  // use once instead of on to turn off realtime updates
+                .then((data)=>{
+                    const meetups = []
+                    const obj = data.val() // obj: value pairs
+                    for(let key in obj) {
+                        meetups.push({
+                            id: key,
+                            title: obj[key].title,
+                            description: obj[key].description,
+                            imageURL: obj[key].imageURL,
+                            date: obj[key].date
+                        })
+                    }
+                    commit('setLoadedMeetups', meetups)
+                    commit('setLoading', false)
+                })
+                .catch((error)=>{
+                    console.log(error)
+                    commit('setLoading', true)
+                })
+        },
         // create meetup and save to store
         createMeetup ({ commit}, payload) {
             const meetup = {
@@ -56,11 +84,24 @@ export const store = new Vuex.Store({
                 location: payload.location,
                 imageURL: payload.imageURL,
                 description: payload.description,
-                date: payload.date,
-                id:'p02oopa9djbh'
+                date: payload.date.toISOString(), //,
+                //id:'p02oopa9djbh'
             }
             // Reach out to firebase and store it
-            commit('createMeetup', meetup)
+            firebase.database().ref('meetups').push(meetup)
+                .then((data) => {
+                    const key = data.key
+                    commit('createMeetup', {
+                        ...meetup, //spread operator
+                        id: key
+                    })
+                    console.log(data)
+                })
+                .catch((error)=>{
+                    console.log(error)
+                })
+                
+            //commit('createMeetup', meetup)
         },
         signUserUp ({commit}, payload) {
             commit('setLoading', true)

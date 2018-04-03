@@ -45,7 +45,7 @@
           </v-layout>     
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>      
-                <img :src="imageURL" alt="Empty Image" height="200">
+                <img :src="imageURL" alt="No Image" height="200">
                 <v-text-field
                   label="Description"
                   name="description"

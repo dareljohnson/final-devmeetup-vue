@@ -21,7 +21,8 @@ import {
   VTextField,
   VDatePicker,
   VTimePicker,
-  VAlert
+  VAlert,
+  VProgressCircular
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
 
@@ -41,7 +42,8 @@ Vue.use(Vuetify, {
     VTextField,
     VDatePicker,
     VTimePicker,
-    VAlert
+    VAlert,
+    VProgressCircular
   },
   theme: {
     primary: '#f44336',
@@ -74,5 +76,7 @@ new Vue({
       projectId: "devmeetup-c685d",
       storageBucket: "devmeetup-c685d.appspot.com"
     })
+    // preload Meetups
+    this.$store.dispatch('loadMeetups')
   }
 })
