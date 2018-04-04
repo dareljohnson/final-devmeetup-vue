@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
-        loadedMeetups:[
+        /* loadedMeetups:[
             // Make sure to copy the correct image url
             { imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/New_york_times_square-terabass.jpg/800px-New_york_times_square-terabass.jpg', 
             id: 'aekhiO2jdBHSis', 
@@ -20,12 +20,13 @@ export const store = new Vuex.Store({
             location: 'Paris, France',
             description: 'It\'s Paris!',
             date: new Date()}
-        ],
+        ], */
         // users
         /* user:{
             id: 'ejqjjjdjsosape32',
             registeredMeetups: ['aekhirreww556e']
         } */
+        loadedMeetups: [],
         user: null,
         loading: false,
         error: null
@@ -39,9 +40,9 @@ export const store = new Vuex.Store({
             const meetup = state.loadedMeetups.find(meetup => {
                 return meetup.id === payload.id
             })
-            meetup.title = payload.title ? meetup.title = payload.title : null
-            meetup.description = payload.description ? meetup.description = payload.description : null
-            meetup.date = payload.date ? meetup.date = payload.date : null
+            meetup.title = payload.title ? meetup.title = payload.title : ''
+            meetup.description = payload.description ? meetup.description = payload.description : ''
+            meetup.date = payload.date ? meetup.date = payload.date : ''
         },
         setLoadedMeetups (state, payload){
             state.loadedMeetups = payload
@@ -141,7 +142,7 @@ export const store = new Vuex.Store({
             }
 
             if(payload.date){
-                updateObj.date = payload.date
+                updateObj.date = payload.date.toISOString()
             }
             
             // update firebase

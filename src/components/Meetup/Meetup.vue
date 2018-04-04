@@ -12,7 +12,7 @@
       </v-layout>
       <v-layout row wrap>
           <v-flex xs12>
-              <v-card>
+              <v-card class="v-cloak--hidden">
                 <v-card-title>
                     <h2 class="primary--text">{{ meetup.title }}</h2>
                     <template  v-if="userIsCreator">
@@ -27,6 +27,10 @@
                 <v-card-text>
                     <div class="info--text">
                         {{ meetup.date | date }} - {{ meetup.location }}
+                    </div>
+                    <div v-if="userIsCreator">
+                        <app-edit-meetup-date-dialog :meetup="meetup"></app-edit-meetup-date-dialog>
+                        <app-edit-meetup-time-dialog :meetup="meetup"></app-edit-meetup-time-dialog>
                     </div>
                     <div>
                         {{ meetup.description }}
@@ -67,3 +71,31 @@
         }
     }
 </script>
+
+<style>
+    [v-cloak] .v-cloak--block {
+    display: block!important;
+    }
+
+    [v-cloak] .v-cloak--inline {
+    display: inline!important;
+    }
+
+    [v-cloak] .v-cloak--inlineBlock {
+    display: inline-block!important;
+    }
+
+    [v-cloak] .v-cloak--hidden {
+    display: none!important;
+    }
+
+    [v-cloak] .v-cloak--invisible {
+    visibility: hidden!important;
+    }
+
+    .v-cloak--block,
+    .v-cloak--inline,
+    .v-cloak--inlineBlock {
+    display: none!important;
+    }
+</style>
