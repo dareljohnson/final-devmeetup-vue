@@ -24,12 +24,13 @@
                     <v-carousel-item
                         v-for="meetup in meetups"
                         :key="meetup.id"
+                        v-if="meetup.id != undefined"
                         :src="meetup.imageURL"
                         :to="{
                             name:'Meetup', 
                             params:{
                                 id: meetup.id}
-                            }"
+                            }"    
                         >
                         <div class="title text-xs-center">
                             {{ meetup.title }}
