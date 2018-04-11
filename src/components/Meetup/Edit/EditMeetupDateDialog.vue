@@ -53,7 +53,7 @@ import ShortDateFilter from '../../../filters/shortdate'
                 newDate.setUTCDate(newDay)
                 newDate.setUTCMonth(newMonth)
                 newDate.setUTCFullYear(newYear)
-                console.log('new date: ' + newDate)
+                //console.log('new date: ' + newDate)
                 this.$store.dispatch('updateMeetupData', {
                     id: this.meetup.id, 
                     date: newDate
