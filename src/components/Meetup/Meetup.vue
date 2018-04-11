@@ -10,9 +10,9 @@
                     ></v-progress-circular>
           </v-flex>
       </v-layout>
-      <v-layout row wrap>
+      <v-layout row wrap v-else>
           <v-flex xs12>
-              <v-card class="v-cloak--hidden">
+              <v-card>
                 <v-card-title>
                     <h2 class="primary--text">{{ meetup.title }}</h2>
                     <template  v-if="userIsCreator">
@@ -21,6 +21,7 @@
                     </template>
                 </v-card-title>
                  <v-card-media
+                   v-cloak
                    :src="meetup.imageURL"
                    height="400px"
                 ></v-card-media>
@@ -32,7 +33,7 @@
                         <app-edit-meetup-date-dialog :meetup="meetup"></app-edit-meetup-date-dialog>
                         <app-edit-meetup-time-dialog :meetup="meetup"></app-edit-meetup-time-dialog>
                     </div>
-                    <div>
+                    <div v-cloak>
                         {{ meetup.description }}
                     </div>
                 </v-card-text>
@@ -73,29 +74,7 @@
 </script>
 
 <style>
-    [v-cloak] .v-cloak--block {
-    display: block!important;
-    }
-
-    [v-cloak] .v-cloak--inline {
-    display: inline!important;
-    }
-
-    [v-cloak] .v-cloak--inlineBlock {
-    display: inline-block!important;
-    }
-
-    [v-cloak] .v-cloak--hidden {
-    display: none!important;
-    }
-
-    [v-cloak] .v-cloak--invisible {
-    visibility: hidden!important;
-    }
-
-    .v-cloak--block,
-    .v-cloak--inline,
-    .v-cloak--inlineBlock {
-    display: none!important;
+    [v-cloak] { 
+        display: none; 
     }
 </style>

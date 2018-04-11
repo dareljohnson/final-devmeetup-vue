@@ -93,8 +93,6 @@ new Vue({
     firebase.auth().onAuthStateChanged((user)=>{
       if(user){
         this.$store.dispatch('autoSignIn', user)
-        // preload Meetups
-        this.$store.dispatch('loadMeetups')
       }
     })
     // preload Meetups

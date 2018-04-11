@@ -145,11 +145,11 @@
           return
         }
         const meetupData = {
-          title: this.title,
-          location: this.location,
+          title: this.title.trim(),
+          location: this.location.trim(),
           //imageURL: this.imageURL,
           image: this.image,
-          description: this.description,
+          description: this.description.trim(),
           date: this.submittableDateTime
         }
         this.$store.dispatch('createMeetup', meetupData)

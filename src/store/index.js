@@ -40,9 +40,16 @@ export const store = new Vuex.Store({
             const meetup = state.loadedMeetups.find(meetup => {
                 return meetup.id === payload.id
             })
-            meetup.title = payload.title ? meetup.title = payload.title : ''
-            meetup.description = payload.description ? meetup.description = payload.description : ''
-            meetup.date = payload.date ? meetup.date = payload.date : ''
+            
+            if(payload.title){
+                meetup.title = payload.title
+            }
+            if(payload.description){
+                meetup.description = payload.description
+            }
+            if(payload.date){
+                meetup.date = payload.date
+            }
         },
         setLoadedMeetups (state, payload){
             state.loadedMeetups = payload
@@ -133,18 +140,22 @@ export const store = new Vuex.Store({
         updateMeetupData ({commit}, payload){
             commit('setLoading', true)
             const updateObj = {}
-            if(payload.title){
-                updateObj.title = payload.title
-            } 
-
-            if(payload.description){
-                updateObj.description = payload.description
-            }
-
-            if(payload.date){
-                updateObj.date = payload.date.toISOString()
-            }
             
+            if(payload.date == null){
+                if(payload.title){
+                    updateObj.title = payload.title
+                } 
+               
+                if(payload.description){
+                    updateObj.description = payload.description
+                }
+            }else{
+                if(payload.date){
+                    updateObj.date = payload.date.toISOString()
+                }
+            }
+            //console.log(updateObj)
+
             // update firebase
             firebase.database().ref('meetups').child(payload.id).update(updateObj)
                 .then(()=>{

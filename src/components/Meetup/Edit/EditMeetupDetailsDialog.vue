@@ -1,5 +1,5 @@
 <template>
-  <v-dialog  width="350px" persistent v-model="editDialog">
+  <v-dialog  width="350px" persistent v-model.lazy="editDialog">
       <v-btn fab dark accent slot="activator">
           <v-icon>edit</v-icon>
       </v-btn>
@@ -13,12 +13,12 @@
               <v-divider></v-divider>
               <v-layout  row wrap>
                   <v-flex xs12>
-                     <v-card-text>
+                     <v-card-text v-cloak>
                          <v-text-field
                             label="Title"
                             name="title"
                             id="title"
-                            v-model="editedTitle"
+                            v-model.lazy="editedTitle"
                             :counter="50"
                             required
                             ></v-text-field>
@@ -26,7 +26,7 @@
                             label="Description"
                             name="description"
                             id="description"
-                            v-model="editedDescription"
+                            v-model.lazy="editedDescription"
                             :counter="250"
                             multi-line
                             required
@@ -38,8 +38,8 @@
               <v-layout row wrap>
                   <v-flex  xs12>
                       <v-card-actions>
-                        <v-btn flat class="blue--text darken-1" @click="editDialog = false">Close</v-btn>
-                        <v-btn flat class="blue--text darken-1" @click="onSaveChanges">Save</v-btn>
+                        <v-btn flat class="blue--text darken-1" @click.native="editDialog = false">Close</v-btn>
+                        <v-btn flat class="blue--text darken-1" @click.native="onSaveChanges">Save</v-btn>
                       </v-card-actions> 
                   </v-flex>
               </v-layout>
@@ -73,3 +73,9 @@
         }
     }
 </script>
+
+<style>
+    [v-cloak] { 
+        display: none; 
+    }
+</style>

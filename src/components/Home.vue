@@ -8,19 +8,19 @@
               <v-btn large router to="/meetup/new" class="info">Organize Meetup</v-btn>
           </v-flex>
       </v-layout>
-      <v-layout>
+      <v-layout v-if="loading">
           <v-flex xs12 class="text-xs-center">
               <v-progress-circular 
                     indeterminate 
                     class="primary--text" 
                     :width="7" 
                     :size="70" 
-                    v-if="loading"></v-progress-circular>
+                    ></v-progress-circular>
           </v-flex>
       </v-layout>
-      <v-layout row wrap class="mt-2">
+      <v-layout row wrap class="mt-2" v-else>
           <v-flex xs12>
-              <v-carousel style="cursor: pointer;" v-cloak v-if="!loading">
+              <v-carousel style="cursor: pointer;" v-if="!loading">
                     <v-carousel-item
                         v-for="meetup in meetups"
                         :key="meetup.id"
@@ -29,7 +29,7 @@
                             name:'Meetup', 
                             params:{
                                 id: meetup.id}
-                                }"
+                            }"
                         >
                         <div class="title text-xs-center">
                             {{ meetup.title }}

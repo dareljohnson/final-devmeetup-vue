@@ -14,6 +14,7 @@
               <v-layout  row wrap>
                   <v-flex xs12>
                      <v-date-picker 
+                        v-cloak
                         v-model.lazy="editableDate"
                         actions>
                          <template slot-scope="{save, cancel}">
@@ -52,8 +53,11 @@ import ShortDateFilter from '../../../filters/shortdate'
                 newDate.setUTCDate(newDay)
                 newDate.setUTCMonth(newMonth)
                 newDate.setUTCFullYear(newYear)
-                //console.log('new date: ' + newDate)
-                this.$store.dispatch('updateMeetupData', {id: this.meetup.id, date: newDate})
+                console.log('new date: ' + newDate)
+                this.$store.dispatch('updateMeetupData', {
+                    id: this.meetup.id, 
+                    date: newDate
+                    })
             }
         },
         created () {
@@ -62,3 +66,9 @@ import ShortDateFilter from '../../../filters/shortdate'
         }
     }
 </script>
+
+<style>
+    [v-cloak] { 
+        display: none; 
+    }
+</style>

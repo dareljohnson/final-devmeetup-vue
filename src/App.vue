@@ -22,7 +22,7 @@
         </v-list> 
         <v-list v-else>   
             <v-list-tile>
-              <v-list-tile-action v-cloak>
+              <v-list-tile-action>
                 <v-icon>home</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
