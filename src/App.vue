@@ -131,7 +131,10 @@ export default {
     },
     userIsAuthenticated () {
       return this.$store.getters.user !== null && this.$store.getters.user !== undefined
-    }
+    },
+    /* currentUser (){
+       return this.$store.getters.user.name
+    } */
   },
   methods:{
     onLogout (){
