@@ -127,10 +127,11 @@
           let minutes = this.time.match(/:(\d+)/)[1]
           date.setHours(hours)
           date.setMinutes(minutes)
+          //console.log("Date text " + date)
         }else{
             date.setHours(this.time.getHours())
             date.setMinutes(this.time.getMinutes())
-            //console.log(date)
+            //console.log("Date obj " + date)
         }
         
         return date

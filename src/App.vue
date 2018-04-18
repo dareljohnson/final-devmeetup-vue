@@ -103,7 +103,7 @@ export default {
       fixed: false,
       miniVariant: false,
       loggedIn: true,
-      currentUser: 'Darel Johnson',
+      currentUser: 'Darel',
       title: 'DevMeetup'
     }
   },
@@ -125,12 +125,12 @@ export default {
     userIsAuthenticated () {
       return this.$store.getters.user !== null && this.$store.getters.user !== undefined
     }
-    
   },
   methods:{
     onLogout (){
       this.$store.dispatch('Logout')
       this.$router.push('/')
+      this.sideNav = false
     }
   },
   name: 'App'

@@ -15,6 +15,7 @@
               <v-layout  row wrap>
                   <v-flex xs12>
                     <v-card-actions>
+                        <v-spacer></v-spacer>
                         <v-btn 
                          class="red--text darken-1"
                          flat
@@ -53,7 +54,7 @@
         methods: {
             onAgree () {
                 if(this.userIsRegistered){
-                    console.log("unregister from meetup Id " + this.meetupId)
+                    //console.log("unregister from meetup Id " + this.meetupId)
                     this.$store.dispatch('unRegisterUserFromMeetup', this.meetupId)
                 }else{
                     //console.log("register for meetup Id " + this.meetupId)

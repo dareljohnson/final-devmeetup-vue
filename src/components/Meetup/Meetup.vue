@@ -39,7 +39,7 @@
                 </v-card-text>
                 <v-card-text>
                     <div v-if="userIsCreator">
-                        <span class="success--text subheading">YOU ARE THE EDITOR</span>
+                        <span class="primary--text subheading">YOU ARE THE EDITOR</span>
                     </div>
                 </v-card-text>
                 <v-card-actions>
