@@ -37,6 +37,11 @@
                         {{ meetup.description }}
                     </div>
                 </v-card-text>
+                <v-card-text>
+                    <div v-if="userIsCreator">
+                        <span class="success--text subheading">YOU ARE THE EDITOR</span>
+                    </div>
+                </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <!-- <v-btn class="primary">Register</v-btn> -->
@@ -68,8 +73,7 @@
             },
             loading () {
                 return this.$store.getters.loading
-        }
-
+            }
         }
     }
 </script>

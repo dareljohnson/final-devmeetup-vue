@@ -30,7 +30,7 @@ export const store = new Vuex.Store({
             state.loadedMeetups.push(payload)
         },
         updateMeetup (state, payload){
-            // Query and find the meetup to update
+            // find the meetup to update
             const meetup = state.loadedMeetups.find(meetup => {
                 return meetup.id === payload.id
             })
@@ -66,7 +66,8 @@ export const store = new Vuex.Store({
         registerUserForMeetup ({commit, getters}, payload){
             commit('setLoading', true)
             const user = getters.user
-            console.log("User " + user)
+
+            //console.log("User " + user)
             firebase.database().ref('/users/' + user.id).child('/registrations/')
             .push(payload)
             .then(data => {
@@ -85,15 +86,17 @@ export const store = new Vuex.Store({
             commit('setLoading', true)
             const user = getters.user
             const fbKeys = getters.user.fbKeys
+
             //console.log("User " + user.id)
             if(!fbKeys){
                 console.log("No fbKeys for user " + user.id)
                 return
             }
-            //console.log("fbKeys " + fbKeys)
+            console.log("payload " + payload)
+            console.log("fbKeys " + fbKeys)
             const fbKey = fbKeys[payload]
-            //console.log("fbKey " + fbKey)
-            firebase.database().ref('/users/' + user.id.replace(".", ",") + '/registrations/').child(fbKey)
+            console.log("fbKey " + fbKey)
+            firebase.database().ref('/users/' + user.id + '/registrations/').child(fbKey)
             .remove()
             .then(() => {
                 commit('setLoading', false)
@@ -135,13 +138,12 @@ export const store = new Vuex.Store({
         // create meetup and save to store
         createMeetup ({ commit, getters}, payload) {
             commit('setLoading', true)
+
             const meetup = {
                 title: payload.title,
                 location: payload.location,
-                //imageURL: payload.imageURL,
                 description: payload.description,
-                date: payload.date.toISOString(), //,
-                //id:'p02oopa9djbh'
+                date: payload.date.toISOString(),
                 creatorId: getters.user.id
             }
             let imageUrl
@@ -213,7 +215,10 @@ export const store = new Vuex.Store({
         signUserUp ({commit}, payload) {
             commit('setLoading', true)
             commit('clearError')
-            firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(payload.email, payload.password)
+            const email = payload.email
+            const password = payload.password
+
+            firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(email, password)
             .then(
                 user => {
                     commit('setLoading', false)
@@ -236,7 +241,10 @@ export const store = new Vuex.Store({
         signUserIn ({commit, getters}, payload){
             commit('setLoading', true)
             commit('clearError')
-            firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+            const email = payload.email
+            const password = payload.password
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
             .then(
                 user => {
                     commit('setLoading', false)
@@ -265,6 +273,7 @@ export const store = new Vuex.Store({
         fetchUserData({commit, getters}){
             commit('setLoading', true)
             const user = getters.user
+            
             firebase.database().ref('/users/' + user.id + '/registrations/').once('value')
             .then(data => {
                 const dataPairs = data.val()
@@ -307,7 +316,9 @@ export const store = new Vuex.Store({
     getters:{
         // load all meetups sorted by date asc
         loadedMeetups (state) {
-            return state.loadedMeetups.sort((meetupA, meetupB)=>{return meetupA.date > meetupB.date})
+            return state.loadedMeetups.sort((meetupA, meetupB)=>{
+                return meetupA.date > meetupB.date
+            })
         },
         // load carousel wth most recent meetups by date asc
         featuredMeetups (state, getters) {

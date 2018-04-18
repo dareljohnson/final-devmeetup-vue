@@ -100,14 +100,7 @@ export default {
     return {
       clipped: false,
       sideNav: false,
-      fixed: false, /* ,
-      menuItems: [
-            { icon: 'supervisor_account', title: 'View Meetups', link: '/meetups'},
-            { icon: 'room', title: 'Organize Meetup', link: '/meetup/new'},
-            { icon: 'person', title: 'Profile', link: '/profile'},
-            { icon: 'face', title: 'Sign up', link: '/signup'},
-            { icon: 'lock_open', title: 'Sign in', link: '/signin'}
-          ], */
+      fixed: false,
       miniVariant: false,
       loggedIn: true,
       currentUser: 'Darel Johnson',
@@ -131,10 +124,8 @@ export default {
     },
     userIsAuthenticated () {
       return this.$store.getters.user !== null && this.$store.getters.user !== undefined
-    },
-    /* currentUser (){
-       return this.$store.getters.user.name
-    } */
+    }
+    
   },
   methods:{
     onLogout (){
