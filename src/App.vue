@@ -130,6 +130,7 @@ export default {
   methods:{
     onLogout (){
       this.$store.dispatch('Logout')
+      this.$router.push('/')
     }
   },
   name: 'App'
